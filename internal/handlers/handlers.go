@@ -43,7 +43,7 @@ func PostUpload(response http.ResponseWriter, request *http.Request) {
 	file, _, err := request.FormFile("myFile")
 	if err != nil {
 		serverLogs.Main.Println(fmt.Errorf("form file raised an error: %w", err))
-		http.Error(response, "Internal server error", http.StatusBadRequest)
+		http.Error(response, "Bad Request", http.StatusBadRequest)
 		return
 	}
 	defer file.Close()
@@ -51,7 +51,7 @@ func PostUpload(response http.ResponseWriter, request *http.Request) {
 	fileBytes, err := io.ReadAll(file)
 	if err != nil {
 		serverLogs.Main.Println(fmt.Errorf("can't read file: %w", err))
-		http.Error(response, "Internal server error", http.StatusBadRequest)
+		http.Error(response, "Bad Request", http.StatusBadRequest)
 		return
 	}
 
