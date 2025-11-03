@@ -51,7 +51,7 @@ func PostUpload(response http.ResponseWriter, request *http.Request) {
 	fileBytes, err := io.ReadAll(file)
 	if err != nil {
 		serverLogs.Main.Println(fmt.Errorf("can't read file: %w", err))
-		http.Error(response, "Internal server error", http.StatusInternalServerError)
+		http.Error(response, "Internal server error", http.StatusBadRequest)
 		return
 	}
 
